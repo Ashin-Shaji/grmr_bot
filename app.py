@@ -1,0 +1,80 @@
+import streamlit as st, base64, chardet, google.generativeai as gem
+from langdetect import detect;from langdetect.lang_detect_exception import LangDetectException
+
+gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
+
+o = gem.GenerativeModel('gemini-pro')
+
+language_dict = {
+    "Arabic": "ar", "Bengali": "bn", "Cebuano": "ceb", "Chinese": "zh",
+    "Czech": "cs", "Danish": "da", "Dutch": "nl", "English": "en",
+    "Finnish": "fi", "French": "fr", "German": "de", "Greek": "el",
+    "Hebrew": "he", "Hindi": "hi", "Hungarian": "hu", "Indonesian": "id",
+    "Italian": "it", "Japanese": "ja", "Korean": "ko", "Malay": "ms",
+    "Norwegian": "no", "Polish": "pl", "Portuguese": "pt",
+    "Romanian": "ro", "Russian": "ru", "Spanish": "es", "Swedish": "sv",
+    "Tagalog": "tl", "Thai": "th", "Turkish": "tr","Urdu": "ur", "Vietnamese": "vi"
+}
+
+def translate_text(input_text, target_language):
+    try:
+        # Detect the input language
+        detected_language = detect(input_text)
+        detected_language_name = [lang for lang, abbrev in language_dict.items() if abbrev == detected_language]
+
+        if not detected_language_name:
+            return f"Detected language {detected_language} is not supported."
+
+        detected_language_name = detected_language_name[0]
+
+        if detected_language_name not in language_dict:
+            return f"Detected language {detected_language_name} is not supported."
+
+        # Ensure the target language is supported
+        if target_language not in language_dict:
+            return f"Target language {target_language} is not supported."
+
+        # Define the translation prompt
+        prompt = f"You are a translator who translates from {detected_language_name} to {target_language}. " \
+                 "Never answer any queries irrelevant to this context. Here is the text to translate:\n\n"
+        text = prompt + input_text
+
+        # Generate the translation
+        response = o.generate_content(text)
+        return response.text
+    except LangDetectException:
+        return "Could not detect the language. Please provide a valid text."
+
+# Streamlit UI
+st.title("Language Translator Bot")
+st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
+
+input_method = st.radio("Select input method:", ("Text input box", "Upload txt input file"))
+input_text = ""
+if input_method == "Text input box":
+    # Input text box
+    input_text = st.text_area("Enter text to translate:", height=200)
+elif input_method == "Upload txt input file":
+    # File uploader
+    uploaded_file = st.file_uploader("Upload a .txt file", type=["txt"])
+    if uploaded_file is not None:
+        raw_data = uploaded_file.read()
+        result = chardet.detect(raw_data)
+        input_text = raw_data.decode(result['encoding'])
+        with st.expander("Uploaded File Content"):
+            st.write(input_text)
+
+target_language = st.selectbox("Select target language:", list(language_dict.keys()))
+
+if st.button("Translate"):
+    if not input_text.strip():
+        st.error("Please enter some text to translate.")
+    else:
+        translation = translate_text(input_text, target_language)
+        st.write("**Translation:**")
+        st.write(translation)
+        st.markdown(f"""<div style="display: flex; justify-content: center;">
+                <a href="data:file/txt;base64,{base64.b64encode(translation.encode()).decode()}"
+                   download="translation.txt">
+                    <button style="padding: 10px 20px; font-size: 16px;">Download Translation</button>
+                </a></div>""",unsafe_allow_html=True)

@@ -6,7 +6,7 @@ gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
 o = gem.GenerativeModel('gemini-1.5-pro-latest')
 
 language_dict = {
-    "Arabic": "ar", "Bengali": "bn", "Cebuano": "ceb", "Chinese": "zh",
+    "Arabic": "ar", "Bengali": "bn", "Chinese": "zh",
     "Czech": "cs", "Danish": "da", "Dutch": "nl", "English": "en",
     "Finnish": "fi", "French": "fr", "German": "de", "Greek": "el",
     "Hebrew": "he", "Hindi": "hi", "Hungarian": "hu", "Indonesian": "id",

@@ -11,7 +11,7 @@ language_dict = {
     "Finnish": "fi", "French": "fr", "German": "de", "Greek": "el",
     "Hebrew": "he", "Hindi": "hi", "Hungarian": "hu", "Indonesian": "id",
     "Italian": "it", "Japanese": "ja", "Korean": "ko", "Malay": "ms",
-    "Norwegian": "no", "Polish": "pl", "Portuguese": "pt",
+     "Polish": "pl", "Portuguese": "pt",
     "Romanian": "ro", "Russian": "ru", "Spanish": "es", "Swedish": "sv",
     "Tagalog": "tl", "Thai": "th", "Turkish": "tr","Urdu": "ur", "Vietnamese": "vi"
 }

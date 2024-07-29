@@ -3,8 +3,8 @@ from langdetect import detect;from langdetect.lang_detect_exception import LangD
 
 gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
 
-o = gem.GenerativeModel('gemini-1.5-pro-latest')
-
+# o = gem.GenerativeModel('gemini-1.5-pro-latest')
+o = gem.GenerativeModel('gemini-pro')
 language_dict = {
     "Arabic": "ar", "Bengali": "bn", "Chinese": "zh",
     "Czech": "cs", "Danish": "da", "Dutch": "nl", "English": "en",

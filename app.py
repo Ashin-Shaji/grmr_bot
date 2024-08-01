@@ -3,7 +3,7 @@ from langdetect import detect;from langdetect.lang_detect_exception import LangD
 
 os.environ["GOOGLE_API_KEY"] = 'AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU'
 # gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
-
+st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
 # o = gem.GenerativeModel('gemini-1.5-pro-latest')
 o = gem.GenerativeModel('gemini-pro')
 language_dict = {
@@ -82,7 +82,7 @@ def translate_text(input_text, target_language):
 
 def main1():
     st.title("Language Translator Bot")
-    st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
+    # st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
     
     input_method = st.radio("Select input method:", ("Text input box", "Upload txt input file"))
     input_text = ""
@@ -218,10 +218,7 @@ def summarize_text(text):
     return response.content
 
 def main3():
-    st.title("Content Summarizer")
-    
-    st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
-    
+    st.title("Content Summarizer")    
     input_text = st.text_area("Enter text to be summarized:", height=200)
     
     if st.button("Summarize"):

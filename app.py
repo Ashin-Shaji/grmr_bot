@@ -1,7 +1,8 @@
-import streamlit as st, base64, chardet, google.generativeai as gem
+import streamlit as st, base64, chardet, google.generativeai as gem, os
 from langdetect import detect;from langdetect.lang_detect_exception import LangDetectException
 
-gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
+os.environ["GOOGLE_API_KEY"] = 'AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU'
+# gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
 
 # o = gem.GenerativeModel('gemini-1.5-pro-latest')
 o = gem.GenerativeModel('gemini-pro')
@@ -114,6 +115,10 @@ def main1():
                     </a></div>""",unsafe_allow_html=True)
 
 #main 2
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import HumanMessage
+import json
+
 # Initialize the ChatGoogleGenerativeAI model
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest")
 

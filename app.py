@@ -16,6 +16,19 @@ st.markdown("""
         margin-right: 10px;
     }
     </style>
+    <style>
+    div[role="radiogroup"] {
+        display: flex;
+        flex-direction: row;
+    }
+    div[role="radiogroup"] > label {
+        margin-right: 20px;
+    }
+    input[type="radio"]:div {
+        background-color: white;
+        border-color: lightblue;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # o = gem.GenerativeModel('gemini-1.5-pro-latest')

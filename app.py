@@ -4,6 +4,20 @@ from langdetect import detect;from langdetect.lang_detect_exception import LangD
 os.environ["GOOGLE_API_KEY"] = 'AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU'
 # gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
 st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
+
+# Custom CSS to display radio options
+st.markdown("""
+    <style>
+    div[role="radiogroup"] > label > div {
+        display: flex;
+        flex-direction: row;
+    }
+    div[role="radiogroup"] > label > div > div {
+        margin-right: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # o = gem.GenerativeModel('gemini-1.5-pro-latest')
 o = gem.GenerativeModel('gemini-pro')
 language_dict = {
@@ -231,19 +245,6 @@ def main3():
 
 selected_option = st.radio("Select an option:",
       ["Paraphrasing and Citation Generator", "Language Translator Bot", "Content Summarizer"])
-
-# Custom CSS to display radio options
-st.markdown("""
-    <style>
-    div[role="radiogroup"] > label > div {
-        display: flex;
-        flex-direction: row;
-    }
-    div[role="radiogroup"] > label > div > div {
-        margin-right: 10px;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 if selected_option == "Language Translator Bot":
     main1()

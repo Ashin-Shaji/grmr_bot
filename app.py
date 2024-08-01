@@ -208,7 +208,7 @@ def main2():
 
 #main 3
 def summarize_text(text):
-    llm = ChatGoogleGenerativeAI(model="gemini-pro")
+    llm = ChatGoogleGenerativeAI(model="Gemini 1.5 Pro")
     
     prompt = """You are a content summarizer. Your task is to carefully read the input text and provide a concise and accurate summary of the main points. Ensure the summary captures the essence of the content without losing important details. Do not add any personal opinions or external information."""
     

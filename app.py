@@ -232,6 +232,19 @@ def main3():
 selected_option = st.radio("Select an option:",
       ["Paraphrasing and Citation Generator", "Language Translator Bot", "Content Summarizer"])
 
+# Custom CSS to display radio options
+st.markdown("""
+    <style>
+    div[role="radiogroup"] > label > div {
+        display: flex;
+        flex-direction: row;
+    }
+    div[role="radiogroup"] > label > div > div {
+        margin-right: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 if selected_option == "Language Translator Bot":
     main1()
 elif selected_option == "Paraphrasing and Citation Generator":

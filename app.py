@@ -206,10 +206,38 @@ def main2():
             else:
                 st.error("Please enter text to generate citation.")
 
+#main 3
+def summarize_text(text):
+    llm = ChatGoogleGenerativeAI(model="gemini-pro")
+    
+    prompt = """You are a content summarizer. Your task is to carefully read the input text and provide a concise and accurate summary of the main points. Ensure the summary captures the essence of the content without losing important details. Do not add any personal opinions or external information."""
+    
+    # Combine prompt and input text
+    full_text = prompt + " " + text
+    response = llm.invoke([HumanMessage(content=full_text)])
+    return response.content
+
+def main3():
+    st.title("Content Summarizer")
+    
+    st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
+    
+    input_text = st.text_area("Enter text to be summarized:", height=200)
+    
+    if st.button("Summarize"):
+        if not input_text.strip():
+            st.error("Please enter some text to summarize.")
+        else:
+            summary = summarize_text(input_text)
+            st.subheader("Summary:")
+            st.write(summary)
+
 selected_option = st.radio("Select an option:",
-      ["Paraphrasing and Citation Generator", "Language Translator Bot"])
+      ["Paraphrasing and Citation Generator", "Language Translator Bot", "Content Summarizer"])
 
 if selected_option == "Language Translator Bot":
     main1()
 elif selected_option == "Paraphrasing and Citation Generator":
     main2()
+elif selected_option == "Content Summarizer":
+    main3()

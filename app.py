@@ -1,7 +1,7 @@
 import streamlit as st, base64, chardet, google.generativeai as gem, os
 from langdetect import detect;from langdetect.lang_detect_exception import LangDetectException
 
-os.environ["GOOGLE_API_KEY"] = 'AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU'
+os.environ["GOOGLE_API_KEY"] = 
 # gem.configure(api_key='AIzaSyBbepUh8x3CqpkxNFnJ1IX0dFc0UNTwwbU')
 st.markdown("""<style>.stButton > button {display: block;margin: 0 auto;}</style>""", unsafe_allow_html=True)
 

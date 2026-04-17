@@ -81,4 +81,3 @@ href = f"data:file/txt;base64,{base64.b64encode(text.encode()).decode()}"
 ### Prompt Guardrails
 The application uses a **Context-Locking** mechanism. For summarization and translation, the instructions explicitly state: *"Never answer any queries irrelevant to this context."* This prevents the model from being hijacked for non-linguistic tasks, ensuring enterprise-level security and consistency.
 
-How would you like to further refine the architectural breakdown—perhaps by exploring the security implications of the custom CSS injections or the prompt engineering strategies for the academic mode?
